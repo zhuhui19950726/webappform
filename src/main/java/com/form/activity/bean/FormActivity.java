@@ -27,6 +27,16 @@ public class FormActivity {
     private BigDecimal activCostPrice;
     //活动的地点
     private String activLocation;
+    //删除标记(0或1)
+    private String delFlag;
+
+    public String getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(String delFlag) {
+        this.delFlag = delFlag;
+    }
 
     public Long getId() {
         return id;

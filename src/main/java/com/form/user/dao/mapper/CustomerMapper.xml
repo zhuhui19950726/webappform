@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.form.user.dao.CustomerMapper" >
+    <resultMap id="BaseResultMap" type="com.form.user.bean.Customer" >
+        <id column="customer_id" property="customerId" jdbcType="BIGINT" />
+        <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+        <result column="customer_pwd" property="customerPwd" jdbcType="VARCHAR" />
+        <result column="mobile" property="mobile" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="customer_identify" property="customerIdentify" jdbcType="VARCHAR" />
+        <result column="activ_id" property="activId" jdbcType="BIGINT" />
+        <result column="lev_words_id" property="levWordsId" jdbcType="BIGINT" />
+        <result column="customer_img" property="customerImg" jdbcType="VARCHAR" />
+        <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+        customer_id, customer_name, customer_pwd, mobile, address, customer_identify, activ_id,
+        lev_words_id, customer_img, del_flag
+    </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where customer_id = #{customerId,jdbcType=BIGINT}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+        delete from user
+        where customer_id = #{customerId,jdbcType=BIGINT}
+    </delete>
+    <insert id="insert" parameterType="com.form.user.bean.Customer" >
+        insert into user (customer_id, customer_name, customer_pwd,
+        mobile, address, customer_identify,
+        activ_id, lev_words_id, customer_img,
+        del_flag)
+        values (#{customerId,jdbcType=BIGINT}, #{customerName,jdbcType=VARCHAR}, #{customerPwd,jdbcType=VARCHAR},
+        #{mobile,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{customerIdentify,jdbcType=VARCHAR},
+        #{activId,jdbcType=BIGINT}, #{levWordsId,jdbcType=BIGINT}, #{customerImg,jdbcType=VARCHAR},
+        #{delFlag,jdbcType=CHAR})
+    </insert>
+    <insert id="insertSelective" parameterType="com.form.user.bean.Customer" >
+        insert into user
+        <trim prefix="(" suffix=")" suffixOverrides="," >
+            <if test="customerId != null" >
+                customer_id,
+            </if>
+            <if test="customerName != null" >
+                customer_name,
+            </if>
+            <if test="customerPwd != null" >
+                customer_pwd,
+            </if>
+            <if test="mobile != null" >
+                mobile,
+            </if>
+            <if test="address != null" >
+                address,
+            </if>
+            <if test="customerIdentify != null" >
+                customer_identify,
+            </if>
+            <if test="activId != null" >
+                activ_id,
+            </if>
+            <if test="levWordsId != null" >
+                lev_words_id,
+            </if>
+            <if test="customerImg != null" >
+                customer_img,
+            </if>
+            <if test="delFlag != null" >
+                del_flag,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides="," >
+            <if test="customerId != null" >
+                #{customerId,jdbcType=BIGINT},
+            </if>
+            <if test="customerName != null" >
+                #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerPwd != null" >
+                #{customerPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null" >
+                #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="customerIdentify != null" >
+                #{customerIdentify,jdbcType=VARCHAR},
+            </if>
+            <if test="activId != null" >
+                #{activId,jdbcType=BIGINT},
+            </if>
+            <if test="levWordsId != null" >
+                #{levWordsId,jdbcType=BIGINT},
+            </if>
+            <if test="customerImg != null" >
+                #{customerImg,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                #{delFlag,jdbcType=CHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.form.user.bean.Customer" >
+        update user
+        <set >
+            <if test="customerName != null" >
+                customer_name = #{customerName,jdbcType=VARCHAR},
+            </if>
+            <if test="customerPwd != null" >
+                customer_pwd = #{customerPwd,jdbcType=VARCHAR},
+            </if>
+            <if test="mobile != null" >
+                mobile = #{mobile,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null" >
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="customerIdentify != null" >
+                customer_identify = #{customerIdentify,jdbcType=VARCHAR},
+            </if>
+            <if test="activId != null" >
+                activ_id = #{activId,jdbcType=BIGINT},
+            </if>
+            <if test="levWordsId != null" >
+                lev_words_id = #{levWordsId,jdbcType=BIGINT},
+            </if>
+            <if test="customerImg != null" >
+                customer_img = #{customerImg,jdbcType=VARCHAR},
+            </if>
+            <if test="delFlag != null" >
+                del_flag = #{delFlag,jdbcType=CHAR},
+            </if>
+        </set>
+        where customer_id = #{customerId,jdbcType=BIGINT}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.form.user.bean.Customer" >
+    update user
+    set customer_name = #{customerName,jdbcType=VARCHAR},
+      customer_pwd = #{customerPwd,jdbcType=VARCHAR},
+      mobile = #{mobile,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      customer_identify = #{customerIdentify,jdbcType=VARCHAR},
+      activ_id = #{activId,jdbcType=BIGINT},
+      lev_words_id = #{levWordsId,jdbcType=BIGINT},
+      customer_img = #{customerImg,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where customer_id = #{customerId,jdbcType=BIGINT}
+  </update>
+</mapper>

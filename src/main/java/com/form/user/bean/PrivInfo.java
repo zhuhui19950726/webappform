@@ -13,6 +13,16 @@ public class PrivInfo {
     private String privUrl;
     //图标
     private String privIcon;
+    //删除标记(0或1)
+    private String delFlag;
+
+    public String getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(String delFlag) {
+        this.delFlag = delFlag;
+    }
 
     public Long getPrivId() {
         return privId;

@@ -23,6 +23,16 @@ public class Customer {
     private Long levWordsId;
     //头像
     private String customerImg;
+    //删除标记(0或1)
+    private String delFlag;
+
+    public String getDelFlag() {
+        return delFlag;
+    }
+
+    public void setDelFlag(String delFlag) {
+        this.delFlag = delFlag;
+    }
 
     public String getCustomerImg() {
         return customerImg;
