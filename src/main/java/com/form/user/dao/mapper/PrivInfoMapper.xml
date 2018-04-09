@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.form.user.dao.PrivInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.form.user.bean.PrivInfo" >
+    <id column="priv_id" property="privId" jdbcType="BIGINT" />
+    <result column="priv_name" property="privName" jdbcType="VARCHAR" />
+    <result column="priv_url" property="privUrl" jdbcType="VARCHAR" />
+    <result column="priv_icon" property="privIcon" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="CHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    priv_id, priv_name, priv_url, priv_icon, del_flag
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from priv_info
+    where priv_id = #{privId,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from priv_info
+    where priv_id = #{privId,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.form.user.bean.PrivInfo" >
+    insert into priv_info (priv_id, priv_name, priv_url, 
+      priv_icon, del_flag)
+    values (#{privId,jdbcType=BIGINT}, #{privName,jdbcType=VARCHAR}, #{privUrl,jdbcType=VARCHAR}, 
+      #{privIcon,jdbcType=VARCHAR}, #{delFlag,jdbcType=CHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.form.user.bean.PrivInfo" >
+    insert into priv_info
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="privId != null" >
+        priv_id,
+      </if>
+      <if test="privName != null" >
+        priv_name,
+      </if>
+      <if test="privUrl != null" >
+        priv_url,
+      </if>
+      <if test="privIcon != null" >
+        priv_icon,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="privId != null" >
+        #{privId,jdbcType=BIGINT},
+      </if>
+      <if test="privName != null" >
+        #{privName,jdbcType=VARCHAR},
+      </if>
+      <if test="privUrl != null" >
+        #{privUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="privIcon != null" >
+        #{privIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=CHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.form.user.bean.PrivInfo" >
+    update priv_info
+    <set >
+      <if test="privName != null" >
+        priv_name = #{privName,jdbcType=VARCHAR},
+      </if>
+      <if test="privUrl != null" >
+        priv_url = #{privUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="privIcon != null" >
+        priv_icon = #{privIcon,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=CHAR},
+      </if>
+    </set>
+    where priv_id = #{privId,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.form.user.bean.PrivInfo" >
+    update priv_info
+    set priv_name = #{privName,jdbcType=VARCHAR},
+      priv_url = #{privUrl,jdbcType=VARCHAR},
+      priv_icon = #{privIcon,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=CHAR}
+    where priv_id = #{privId,jdbcType=BIGINT}
+  </update>
+</mapper>

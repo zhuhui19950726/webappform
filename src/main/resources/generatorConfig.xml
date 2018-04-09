@@ -24,7 +24,7 @@
         </javaTypeResolver>
 
         <!-- 生成模型(PO)的包名和位置 -->
-        <javaModelGenerator targetPackage="com.zhuhui.user"
+        <javaModelGenerator targetPackage="com.form.user.bean"
                             targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
@@ -33,7 +33,7 @@
         </javaModelGenerator>
 
         <!-- 生成映射文件的包名和位置-->
-        <sqlMapGenerator targetPackage="com.zhuhui.dao.mapper"
+        <sqlMapGenerator targetPackage="com.form.user.dao.mapper"
                          targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
@@ -41,7 +41,7 @@
 
         <!-- 生成DAO的包名和位置-->
         <javaClientGenerator type="XMLMAPPER"
-                             targetPackage="com.zhuhui.dao"
+                             targetPackage="com.form.user.dao"
                              targetProject="src/main/java">
             <!-- enableSubPackages:是否让schema作为包的后缀 -->
             <property name="enableSubPackages" value="false" />
@@ -49,7 +49,7 @@
 
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是
       实体类名-->
-        <table tableName="user" domainObjectName="Customer"
+        <table tableName="iden_priv_ref" domainObjectName="IdenPrivRefInfo"
                enableCountByExample="false" enableUpdateByExample="false"
                enableDeleteByExample="false" enableSelectByExample="false"
                selectByExampleQueryId="false"></table>

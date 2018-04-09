@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.form.user.dao.IdenPrivRefInfoMapper" >
+  <resultMap id="BaseResultMap" type="com.form.user.bean.IdenPrivRefInfo" >
+    <result column="iden_name" property="idenName" jdbcType="VARCHAR" />
+    <result column="priv_id" property="privId" jdbcType="BIGINT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.form.user.bean.IdenPrivRefInfo" >
+    insert into iden_priv_ref (iden_name, priv_id)
+    values (#{idenName,jdbcType=VARCHAR}, #{privId,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.form.user.bean.IdenPrivRefInfo" >
+    insert into iden_priv_ref
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="idenName != null" >
+        iden_name,
+      </if>
+      <if test="privId != null" >
+        priv_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="idenName != null" >
+        #{idenName,jdbcType=VARCHAR},
+      </if>
+      <if test="privId != null" >
+        #{privId,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+</mapper>
