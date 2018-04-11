@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.form.user.dao.CustomerMapper" >
+<mapper namespace="com.form.user.dao.mapper.CustomerMapper" >
     <resultMap id="BaseResultMap" type="com.form.user.bean.Customer" >
         <id column="customer_id" property="customerId" jdbcType="BIGINT" />
         <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
@@ -23,6 +23,21 @@
         from user
         where customer_id = #{customerId,jdbcType=BIGINT}
     </select>
+    <select id="selectSelective" resultMap="BaseResultMap" parameterType="com.form.user.bean.Customer" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        <where>
+            <if test="customerName !=null">
+             AND customer_name = #{customerName,jdbcType=BIGINT}
+            </if>
+            <if test="customerPwd !=null">
+             AND customer_pwd = #{customerPwd,jdbcType=BIGINT}
+            </if>
+        </where>
+        and del_flag='0'
+    </select>
+
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
         delete from user
         where customer_id = #{customerId,jdbcType=BIGINT}
