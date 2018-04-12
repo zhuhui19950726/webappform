@@ -12,6 +12,8 @@ public class Manager {
     private String flag;
 
     private String photoImg;
+    //管理员身份
+    private String identify;
 
     public Long getId() {
         return id;
@@ -59,5 +61,13 @@ public class Manager {
 
     public void setPhotoImg(String photoImg) {
         this.photoImg = photoImg == null ? null : photoImg.trim();
+    }
+
+    public String getIdentify() {
+        return identify;
+    }
+
+    public void setIdentify(String identify) {
+        this.identify = identify;
     }
 }

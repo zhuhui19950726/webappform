@@ -3,6 +3,7 @@ package com.form.user.service;
 import com.form.user.bean.Customer;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * Created by zhuhui on 2018/4/11.
@@ -18,4 +19,6 @@ public interface CustomerService {
     int loginManager(HttpServletRequest request, String username, String userkey);
 
 //    Customer login(String customerName, String customerPwd);
+
+      List<Customer> getAllCustomer(Customer customer);
 }

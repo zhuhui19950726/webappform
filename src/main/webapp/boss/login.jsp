@@ -17,6 +17,7 @@
     <link href="<%=basePath %>boss/iconfont/iconfont.css" rel="stylesheet">
     <link href="<%=basePath %>boss/css/wanmi/signin.css" rel="stylesheet">
     <script type="text/javascript" src="<%=basePath %>boss/js/wanmi/jquery.min.js"></script>
+    <%--<script type="text/javascript" src="${basePath}/boss/js/wanmi/jquery1.7.2.js"></script>--%>
     <script src="<%=basePath %>boss/js/wanmi/newlogin/particles.js"></script>
     <link href="<%=basePath %>boss/js/wanmi/newlogin/application.css" media="all" rel="stylesheet">
     <script src="<%=basePath %>boss/js/wanmi/newlogin/application.js"></script>
@@ -26,26 +27,26 @@
     <canvas style="width: 100%; height: 100%;" width="2560" height="724"></canvas>
 </div>
 <div class="container">
-    <input type="hidden" id="patchcaFlag"/>
-    <div class="login_box authorize_box " id="authorize_box" style="display: none">
-        <h2 class="form-signin-heading"><img alt="" src="<%=basePath %>boss/images/authorize.png" width="165" max-height="39">  </h2>
-        <div class="form-group">
-            <div class="input-group">
-                <span class="input-group-addon"><i class="icon iconfont">&#xe616;</i></span>
-                <input type="text" class="form-control" placeholder="输入SN"  name="name" id="authorization">
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="alert alert-dismissible fade in" role="alert" id="authorize_error"  style="display:none;width:290px;padding: 0;border:none;color: #ff4343;margin-bottom: 5px;">
-                <div>
-                    <strong id="erroMsg"></strong>
-                </div>
-            </div>
-        </div>
-        <div class="form-group">
-            <button class="btn btn-lg btn-primary btn-block" type="button" onclick="checkAuthorization();">授权</button>
-        </div>
-    </div>
+    <%--<input type="hidden" id="patchcaFlag"/>--%>
+    <%--<div class="login_box authorize_box " id="authorize_box" style="display: none">--%>
+        <%--<h2 class="form-signin-heading"><img alt="" src="<%=basePath %>boss/images/authorize.png" width="165" max-height="39">  </h2>--%>
+        <%--<div class="form-group">--%>
+            <%--<div class="input-group">--%>
+                <%--<span class="input-group-addon"><i class="icon iconfont">&#xe616;</i></span>--%>
+                <%--<input type="text" class="form-control" placeholder="输入SN"  name="name" id="authorization">--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<div class="form-group">--%>
+            <%--<div class="alert alert-dismissible fade in" role="alert" id="authorize_error"  style="display:none;width:290px;padding: 0;border:none;color: #ff4343;margin-bottom: 5px;">--%>
+                <%--<div>--%>
+                    <%--<strong id="erroMsg"></strong>--%>
+                <%--</div>--%>
+            <%--</div>--%>
+        <%--</div>--%>
+        <%--<div class="form-group">--%>
+            <%--<button class="btn btn-lg btn-primary btn-block" type="button" onclick="checkAuthorization();">授权</button>--%>
+        <%--</div>--%>
+    <%--</div>--%>
     <div class="login_box" style="display: block;" id="login_box">
         <form class="form-signin form-horizontal" id="lForm">
             <h2 class="form-signin-heading"><img alt="" src="" width="165" max-height="39" id="lgLogo">  </h2>
@@ -127,17 +128,13 @@
 
     function login(){
         $("#login_error").css({"display":"none"});
-        $("#code_old").css({"display":"none"});
         $("#managername").parents(".form-group").removeClass("has-error");
         $("#managerpassword").parents(".form-group").removeClass("has-error");
-        var enterValue = $(".code_text").val();
-        if( patchaFlag!="" && patchaFlag==0){
             $.ajax({
-                url: "customer/login.htm",
-                context: document.body,
+                url: "customer/login",
                 type: 'POST',
-                async:false,
-                data:{username:$("#managername").val(),userkey:$("#managerpassword").val(),code:enterValue},
+                dataType:"json",
+                data:{username:$("#managername").val(),userkey:$("#managerpassword").val()},
                 success: function(data){
                     if(data == 0){
                         //用户名错误
@@ -153,60 +150,11 @@
                         $("#login_error").css({"display":"block"});
                         //getPatcha();
                     }else{
-                        alert(11111);
-//                        window.location.href="index.htm";
+                        window.location.href="customer/index_new";
                     }
                 }});
-        }else{
-            $.ajax({
-                url: "customer/login.htm",
-                context: document.body,
-                async:false,
-                type: 'POST',
-                data:{username:$("#managername").val(),userkey:$("#managerpassword").val(),code:enterValue},
-                success: function(data){
-                    if(data == 0){
-                        //用户名错误
-                        $("#login_error").css({"display":"block"});
-                        $("#managername").parents(".form-group").addClass("has-error");
-                        /*如果失败修更新验证码**/
-                        $(".code_image").click();
-                        $(".code_text").val("");
-                        getPatcha();
-                    }else if(data == 2){
-                        //密码错误
-                        $("#login_error").css({"display":"block"});
-                        $("#managerpassword").parents(".form-group").addClass("has-error");
-                        /*如果失败修更新验证码*/
-                        $(".code_image").click();
-                        $(".code_text").val("");
-                        getPatcha();
-                    }else if(data == 3){
-                        //用户名错误*/
-                        $("#login_error").css({"display":"block"});
-                        $("#managername").parents(".form-group").addClass("has-error");
-                        $("#managerpassword").parents(".form-group").addClass("has-error");
-                        $(".code_image").click();
-                        $(".code_text").val("");
-                        getPatcha();
-                    }else if (data == -1){
-                        $(".code_text").parents(".form-group").addClass("has-error");
-                        $("#code_old").css({"display":"block"});
-                        $(".code_image").click();
-                        $(".code_text").val("");
-                        getPatcha();
-                    }else
-                    {
-                        alert(2222222222);
-//                        window.location.href="index.htm";
-                    }
-                }});
-
-
-
-
-        }
     }
+
     //随机生成一张背景图片
     function changeBgimg(){
         var n = Math.floor(Math.random()*11)+1;
@@ -263,7 +211,7 @@
         $(obj).parent().hide();
     }
 
-//    //授权验证
+  //授权验证
 //    function checkAuthorization() {
 //        $.ajax({
 //            url:"checkAuthorization.htm?menuId=5761&menuParentId=5762&myselfId=5763",

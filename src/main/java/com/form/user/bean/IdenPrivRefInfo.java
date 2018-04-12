@@ -6,16 +6,17 @@ package com.form.user.bean;
  */
 public class IdenPrivRefInfo {
     //身份
-    private String iden;
+    private String idenName;
     //权限Id
     private Long PrivId;
 
-    public String getIden() {
-        return iden;
+
+    public String getIdenName() {
+        return idenName;
     }
 
-    public void setIden(String iden) {
-        this.iden = iden;
+    public void setIdenName(String idenName) {
+        this.idenName = idenName;
     }
 
     public Long getPrivId() {

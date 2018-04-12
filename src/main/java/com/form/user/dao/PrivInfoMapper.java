@@ -14,4 +14,6 @@ public interface PrivInfoMapper {
     int updateByPrimaryKeySelective(PrivInfo record);
 
     int updateByPrimaryKey(PrivInfo record);
+
+
 }

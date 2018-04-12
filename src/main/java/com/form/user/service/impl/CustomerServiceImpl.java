@@ -46,20 +46,21 @@ public class CustomerServiceImpl implements CustomerService {
         //0用户名不存在  1用户名存在
         Long existsFlag =managerMapper.checkexistsByName(username);
         Map<String, Object> paramMap = null;
-        if("0".equals(existsFlag.toString())){
+        if(!"0".equals(existsFlag.toString())){
             paramMap = new HashMap<String, Object>();
             paramMap.put(USERNAME, username);
             paramMap.put(PASSWORD, userkey);
-            manager=managerMapper.selectManagerByNamePwd(paramMap);
+            manager = managerMapper.selectManagerByNamePwd(paramMap);
             if(manager!=null && "0".equals(manager.getFlag())){
                 // 将登陆名存在session
-                request.getSession().setAttribute("name", username);
+                request.getSession().setAttribute("login_info",manager);
+                request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("loginUserId", manager.getId());
                 request.getSession().setAttribute("photoImg", manager.getPhotoImg());
 
                 //登陆后把验证码的session清除
-                request.getSession().removeAttribute("PATCHCA");
-                return MANAGER_BASE_CODE + manager.getId().intValue();
+//                request.getSession().removeAttribute("PATCHCA");
+                return 1;
             }else if(manager != null && !"0".equals(manager.getFlag())){
                 // 冻结
                 return THIRD;
@@ -70,6 +71,15 @@ public class CustomerServiceImpl implements CustomerService {
         }else{
             return 0;
         }
+    }
+
+    /**
+     * 获取所有用户的信息
+     * @return
+     */
+    @Override
+    public List<Customer> getAllCustomer(Customer customer) {
+        return customerMapper.selectSelective(customer);
     }
 
 //    @Override

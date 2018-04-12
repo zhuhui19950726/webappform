@@ -28,4 +28,11 @@
       </if>
     </trim>
   </insert>
+  <!-- 通过用户名身份来进行查询 -->
+  <select id="selectByIden" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    iden_name,priv_id
+    from iden_priv_ref
+    where  iden_name= #{idenName,jdbcType=VARCHAR}
+  </select>
 </mapper>

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.form.user.dao.ManagerMapper">
+  <resultMap id="BaseResultMap" type="com.form.user.bean.Manager">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="userkey" jdbcType="VARCHAR" property="userkey" />
+    <result column="cellphone" jdbcType="VARCHAR" property="cellphone" />
+    <result column="flag" jdbcType="CHAR" property="flag" />
+    <result column="photo_img" jdbcType="VARCHAR" property="photoImg" />
+    <result column="identify" jdbcType="VARCHAR" property="identify" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, userkey, cellphone, flag, photo_img,identify
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from manager
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <!-- 通过用户名查询用户信息 -->
+  <select id="selectByName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from manager
+    where username = #{username,jdbcType=VARCHAR} and flag='0'
+  </select>
+
+  <select id="selectManagerByNamePwd" parameterType="java.util.Map" resultMap="BaseResultMap">
+    select
+    id, username, cellphone, flag, photo_img
+    from manager
+    where username = #{username,jdbcType=VARCHAR} and flag='0'and userkey = #{userkey,jdbcType=VARCHAR};
+  </select>
+
+  <select id="checkexistsByName" parameterType="java.lang.String" resultType="java.lang.Long">
+    select
+    count(1)
+    from manager
+    where username = #{username,jdbcType=VARCHAR} AND flag='0';
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from manager
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.form.user.bean.Manager">
+    insert into manager (id, username, userkey, 
+      cellphone, flag, photo_img
+      )
+    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{userkey,jdbcType=VARCHAR}, 
+      #{cellphone,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR}, #{photoImg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.form.user.bean.Manager">
+    insert into manager
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="userkey != null">
+        userkey,
+      </if>
+      <if test="cellphone != null">
+        cellphone,
+      </if>
+      <if test="flag != null">
+        flag,
+      </if>
+      <if test="photoImg != null">
+        photo_img,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userkey != null">
+        #{userkey,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        #{flag,jdbcType=CHAR},
+      </if>
+      <if test="photoImg != null">
+        #{photoImg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.form.user.bean.Manager">
+    update manager
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="userkey != null">
+        userkey = #{userkey,jdbcType=VARCHAR},
+      </if>
+      <if test="cellphone != null">
+        cellphone = #{cellphone,jdbcType=VARCHAR},
+      </if>
+      <if test="flag != null">
+        flag = #{flag,jdbcType=CHAR},
+      </if>
+      <if test="photoImg != null">
+        photo_img = #{photoImg,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.form.user.bean.Manager">
+    update manager
+    set username = #{username,jdbcType=VARCHAR},
+      userkey = #{userkey,jdbcType=VARCHAR},
+      cellphone = #{cellphone,jdbcType=VARCHAR},
+      flag = #{flag,jdbcType=CHAR},
+      photo_img = #{photoImg,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
