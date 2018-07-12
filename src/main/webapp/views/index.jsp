@@ -12,7 +12,7 @@
 <head>
     <base href="<%=basePath%>">
     <meta charset="utf-8" />
-    <title>农家乐管理系统</title>
+    <title>后台管理系统</title>
     <!-- basic styles -->
     <link href="${basePath}/boss/css/neusoft/bootstrap.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="${basePath}/boss/css/neusoft/font-awesome.min.css" />
@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="${basePath}/boss/css/neusoft/ace.min.css" />
     <link rel="stylesheet" href="${basePath}/boss/css/neusoft/ace-rtl.min.css" />
     <link rel="stylesheet" href="${basePath}/boss/css/neusoft/ace-rtl.min.css" />
+
 
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="/boss/css/neusoft/ace-ie.min.css" />
@@ -50,7 +51,7 @@
     <div class="navbar-container" id="navbar-container">
         <div class="navbar-header pull-left">
             <a href="#" class="navbar-brand"> <small> <i
-                    class="icon-leaf"></i> 农家乐管理系统 </small> </a>
+                    class="icon-leaf"></i> 后台管理系统 </small> </a>
             <!-- /.brand -->
         </div>
         <!-- /.navbar-header -->
@@ -60,7 +61,8 @@
             <ul class="nav ace-nav">
                 <li class="light-blue"><a data-toggle="dropdown" href="#"
                                           class="dropdown-toggle"> <img class="nav-user-photo"
-                                                                        src="boss/images/avatars/duolai1.jpg" alt="Jason's Photo" /> <span
+                                                                        src="boss/images/avatars/${sessionScope.photoImg}"
+                                                                        alt="Jason's Photo" /> <span
                         class="user-info"> <small>欢迎光临,</small>
 								${sessionScope.username } </span> <i class="icon-caret-down"></i>
                 </a>
@@ -74,7 +76,8 @@
                         <li class="divider"></li>
 
                         <li><a href="#"> <i class="icon-off"></i> 退出 </a></li>
-                    </ul></li>
+                    </ul>
+                </li>
             </ul>
             <!-- /.ace-nav -->
         </div>
@@ -107,17 +110,17 @@
 
             <ul class="nav nav-list">
 
-                <c:forEach items="${pList }" var="item">
+                <%--<c:forEach items="${pList }" var="item">--%>
 
-                    <li class="menu_left"><a href="${item.privUrl }" target="right"> <i
-                            class="${item.privIcon }"></i> <span class="menu-text">
-                            ${item.privName } </span> </a>
-                    </li>
+                    <%--<li class="menu_left"><a href="${item.privUrl }" target="right"> <i--%>
+                            <%--class="${item.privIcon }"></i> <span class="menu-text">--%>
+                            <%--${item.privName } </span> </a>--%>
+                    <%--</li>--%>
 
-                </c:forEach>
+                <%--</c:forEach>--%>
 
 
-                <!--
+
                 <li class="active"><a href="user/toUsers.do" target="right">
                         <i class="icon-dashboard"></i> <span class="menu-text">
                             用户管理 </span> </a></li>
@@ -139,7 +142,7 @@
 
                 <li><a href="typography.html"> <i class="icon-edit"></i> <span
                         class="menu-text"> 充值中心 </span> </a></li>
-                      -->
+
             </ul>
             <!-- /.nav-list -->
 

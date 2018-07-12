@@ -1,16 +1,17 @@
 package com.form.user.bean;
 
 public class Manager {
+    //主键
     private Long id;
-
+    //用户名
     private String username;
-
+    //密码
     private String userkey;
-
+    //电话
     private String cellphone;
-
+    //删除标记
     private String flag;
-
+    //头像
     private String photoImg;
     //管理员身份
     private String identify;

@@ -6,32 +6,19 @@
             + request.getServerName() + ":" + request.getServerPort()
             + path + "/";
 %>
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 <head>
-    <base href="<%=basePath%>">
     <meta charset="utf-8" />
     <title>用户列表</title>
     <!-- basic styles -->
-    <link href="${basePath}/boss/css/neusoft/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="${basePath}/boss/css/neusoft/font-awesome.min.css" />
-
-    <!--[if IE 7]>
-    <link rel="stylesheet" href="/boss/css/neusoft/font-awesome-ie7.min.css" />
-    <![endif]-->
-
-    <!-- page specific plugin styles -->
-
-    <!-- fonts -->
+    <link href="<%=basePath %>boss/css/neusoft/bootstrap.min.css" rel="stylesheet" />
+    <link href="<%=basePath %>boss/css/neusoft/font-awesome.min.css" rel="stylesheet"  />
 
 
-
-    <!-- ace styles -->
-
-    <link rel="stylesheet" href="${basePath}/boss/css/neusoft/ace.min.css" />
-    <link rel="stylesheet" href="${basePath}/boss/css/neusoft/ace-rtl.min.css" />
-    <link rel="stylesheet" href="${basePath}/boss/css/neusoft/ace-skins.min.css" />
+    <link rel="stylesheet" href="<%=basePath %>boss/css/neusoft/ace.min.css" />
+    <link rel="stylesheet" href="<%=basePath %>boss/css/neusoft/ace-rtl.min.css" />
+    <link rel="stylesheet" href="<%=basePath %>boss/css/neusoft/ace-skins.min.css" />
 
     <!--[if lte IE 8]>
     <link rel="stylesheet" href="/boss/css/neusoft/ace-ie.min.css" />
@@ -41,7 +28,7 @@
 
     <!-- ace settings handler -->
 
-    <script src="${basePath}/boss/js/neusoft/ace-extra.min.js"></script>
+    <script src="<%=basePath %>boss/js/neusoft/ace-extra.min.js"></script>
 
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 
@@ -111,9 +98,8 @@
 
                                         <th width="20%">姓名</th>
                                         <th width="20%">电话</th>
-                                        <th width="20%">活动编号</th>
+                                        <th width="20%">地址</th>
                                         <th class="hidden-480" width="20%">身份</th>
-
                                         <th width="20%">操作</th>
                                     </tr>
                                     </thead>
@@ -123,7 +109,7 @@
                                         <tr>
                                             <td><a href="#">${item.customerName }</a></td>
                                             <td>${item.mobile }</td>
-                                            <td><a href="#">${item.activId }</a></td>
+                                            <td>${item.address }</td>
                                             <td class="hidden-480">
 													<span class="label label-sm">
 													<c:choose>
@@ -133,18 +119,13 @@
                                                     </c:choose>${item.customerIdentify}
 	                                                </span>
                                             </td>
-
-                                            <%--<td>--%>
-                                                <%--<div--%>
-                                                        <%--class="visible-md visible-lg hidden-sm hidden-xs action-buttons">--%>
-                                                    <%--<a class="blue" href="#"> <i--%>
-                                                            <%--class="icon-zoom-in bigger-130"></i> </a> <a class="green"--%>
-                                                                                                         <%--href="user/toModify.do?id=${item.id }"> <i--%>
-                                                        <%--class="icon-pencil bigger-130"></i> </a> <a class="red"--%>
-                                                                                                    <%--href="user/del.do?id=${item.id }"> <i--%>
-                                                        <%--class="icon-trash bigger-130"></i> </a>--%>
-                                                <%--</div>--%>
-                                            <%--</td>--%>
+                                            <td>
+                                                <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+                                                    <a class="blue" href="#"> <i class="icon-zoom-in bigger-130"></i></a>
+                                                    <a class="green" href="#"> <i class="icon-pencil bigger-130"></i></a>
+                                                    <a class="red" href="#"> <i class="icon-trash bigger-130"></i> </a>
+                                                </div>
+                                            </td>
                                         </tr>
                                     </c:forEach>
 
@@ -153,7 +134,7 @@
                             </div>
                         </div>
                     </div>
-
+                    <div style="display: none">user/toModify.do?id=${item.id }/user/del.do?id=${item.id }</div>
                 </div>
                 <!-- /.col -->
             </div>
@@ -170,7 +151,7 @@
 
 <!--[if !IE]> -->
 
-<script src="${basePath}/boss/js/neusoft/jquery.min.js"></script>
+<script src="<%=basePath %>boss/js/neusoft/jquery.min.js"></script>
 
 <!-- <![endif]-->
 
@@ -201,18 +182,18 @@
             .write("<script src='boss/js/neusoft/jquery.mobile.custom.min.js'>"
                 + "<"+"/script>");
 </script>
-<script src="${basePath}/boss/js/neusoft/bootbox.min.js"></script>
-<script src="${basePath}/boss/js/neusoft/typeahead-bs2.min.js"></script>
+<script src="<%=basePath %>boss/js/neusoft/bootbox.min.js"></script>
+<script src="<%=basePath %>boss/js/neusoft/typeahead-bs2.min.js"></script>
 
 <!-- page specific plugin scripts -->
 
-<script src="${basePath}/boss/js/neusoft/jquery.dataTables.min.js"></script>
-<script src="${basePath}/boss/js/neusoft/jquery.dataTables.bootstrap.js"></script>
+<script src="<%=basePath %>boss/js/neusoft/jquery.dataTables.min.js"></script>
+<script src="<%=basePath %>boss/js/neusoft/jquery.dataTables.bootstrap.js"></script>
 
 <!-- ace scripts -->
 
-<script src="${basePath}/boss/js/neusoft/ace-elements.min.js"></script>
-<script src="${basePath}/boss/js/neusoft/ace.min.js"></script>
+<script src="<%=basePath %>boss/js/neusoft/ace-elements.min.js"></script>
+<script src="<%=basePath %>boss/js/neusoft/ace.min.js"></script>
 
 <!-- inline scripts related to this page -->
 

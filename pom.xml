@@ -170,10 +170,17 @@
       <artifactId>Sdk4J</artifactId>
       <version>2.0</version>
     </dependency>
+      <!--StringUtils-->
     <dependency>
       <groupId>commons-lang</groupId>
       <artifactId>commons-lang</artifactId>
       <version>2.6</version>
+    </dependency>
+      <!--集合类的工具-->
+    <dependency>
+      <groupId>commons-collections</groupId>
+      <artifactId>commons-collections</artifactId>
+      <version>3.2.1</version>
     </dependency>
   </dependencies>
 

@@ -18,7 +18,6 @@ public interface CustomerService {
      */
     int loginManager(HttpServletRequest request, String username, String userkey);
 
-//    Customer login(String customerName, String customerPwd);
 
-      List<Customer> getAllCustomer(Customer customer);
+    List<Customer> getAllCustomer(Customer customer);
 }
