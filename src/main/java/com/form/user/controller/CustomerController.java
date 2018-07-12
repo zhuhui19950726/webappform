@@ -19,7 +19,7 @@ import java.util.List;
 
 
 /**
- * Created by zhuhui on 2018/4/11.
+ * Created by zhuhui
  */
 @Controller
 @RequestMapping("/customer")
@@ -44,13 +44,8 @@ public class CustomerController {
      */
     @RequestMapping(value = "/login")
     @ResponseBody
-    public int login(String username, String userkey,HttpServletRequest request){
+    public int login(String username,String userkey,HttpServletRequest request){
 
-//        if ("1".equals(patchaFlag) && null == code || !code.equals(request.getSession().getAttribute("PATCHCA"))) {
-//            // 验证码匹配
-//            return -1;
-//        }
-        // 非空验证 用户名
         if (null != username) {
             LOGGER.info("管理员【" + username + "】登陆");
         }

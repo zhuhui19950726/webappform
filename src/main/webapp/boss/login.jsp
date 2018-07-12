@@ -10,7 +10,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>朱辉的后台登录界面</title>
+    <title>后台登录界面</title>
 
     <!-- Bootstrap -->
     <link href="<%=basePath %>boss/css/wanmi/bootstrap.min.css" rel="stylesheet">
@@ -137,7 +137,7 @@
                 data:{username:$("#managername").val(),userkey:$("#managerpassword").val()},
                 success: function(data){
                     if(data == 0){
-                        //用户名错误
+                        //用户名不存在
                         $("#login_error").css({"display":"block"});
                         $("#managername").parents(".form-group").addClass("has-error");
                         //getPatcha();
@@ -146,9 +146,8 @@
                         $("#login_error").css({"display":"block"});
                         //getPatcha();
                     }else if(data == 3){
-                        //用户名错误
+                        //用户名被冻结
                         $("#login_error").css({"display":"block"});
-                        //getPatcha();
                     }else{
                         window.location.href="customer/index_new";
                     }
@@ -158,7 +157,7 @@
     //随机生成一张背景图片
     function changeBgimg(){
         var n = Math.floor(Math.random()*11)+1;
-        $("body").css("backgroundImage",'url(<%=basePath%>/boss/images/bgimg'+n+'.png)');
+        $("body").css("backgroundImage",'boss/images/bgimg/8.png');
         $("body").css("background-repeat",'no-repeat');
 
         if(n==10){

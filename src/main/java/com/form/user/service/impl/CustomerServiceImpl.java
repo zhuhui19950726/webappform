@@ -5,6 +5,7 @@ import com.form.user.bean.Manager;
 import com.form.user.dao.CustomerMapper;
 import com.form.user.dao.ManagerMapper;
 import com.form.user.service.CustomerService;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -20,6 +21,12 @@ import java.util.Map;
 public class CustomerServiceImpl implements CustomerService {
 
     private static final int THIRD = 3;
+
+    private static final int ONE = 1;
+
+    private static final int TWO = 2;
+
+    private static final int ZERO = 0;
 
     private static final int MANAGER_BASE_CODE = 10000;
 
@@ -43,10 +50,10 @@ public class CustomerServiceImpl implements CustomerService {
      */
     @Override
     public int loginManager(HttpServletRequest request, String username, String userkey) {
-        //0用户名不存在  1用户名存在
+        //查询下用户名是否存在
         Long existsFlag =managerMapper.checkexistsByName(username);
         Map<String, Object> paramMap = null;
-        if(!"0".equals(existsFlag.toString())){
+        if(StringUtils.isNotEmpty(existsFlag.toString())){
             paramMap = new HashMap<String, Object>();
             paramMap.put(USERNAME, username);
             paramMap.put(PASSWORD, userkey);
@@ -57,19 +64,17 @@ public class CustomerServiceImpl implements CustomerService {
                 request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("loginUserId", manager.getId());
                 request.getSession().setAttribute("photoImg", manager.getPhotoImg());
-
-                //登陆后把验证码的session清除
-//                request.getSession().removeAttribute("PATCHCA");
-                return 1;
+                return ONE;
             }else if(manager != null && !"0".equals(manager.getFlag())){
                 // 冻结
                 return THIRD;
             }else{
                 // 密码错误
-                return 2;
+                return TWO;
             }
         }else{
-            return 0;
+            //用户不存在
+            return ZERO;
         }
     }
 
