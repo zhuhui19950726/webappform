@@ -53,19 +53,20 @@ public class CustomerServiceImpl implements CustomerService {
         //查询下用户名是否存在
         Long existsFlag =managerMapper.checkexistsByName(username);
         Map<String, Object> paramMap = null;
-        if(StringUtils.isNotEmpty(existsFlag.toString())){
+        if(!"0".equals(existsFlag.toString())){
             paramMap = new HashMap<String, Object>();
             paramMap.put(USERNAME, username);
             paramMap.put(PASSWORD, userkey);
             manager = managerMapper.selectManagerByNamePwd(paramMap);
-            if(manager!=null && "0".equals(manager.getFlag())){
+            if(manager!=null && "0".equals(manager.getDelFlag())){
                 // 将登陆名存在session
-                request.getSession().setAttribute("login_info",manager);
                 request.getSession().setAttribute("username", username);
                 request.getSession().setAttribute("loginUserId", manager.getId());
                 request.getSession().setAttribute("photoImg", manager.getPhotoImg());
+                //修改管理员的登录时间
+                managerMapper.updateByPrimaryKey(manager);
                 return ONE;
-            }else if(manager != null && !"0".equals(manager.getFlag())){
+            }else if(manager != null && !"0".equals(manager.getDelFlag())){
                 // 冻结
                 return THIRD;
             }else{
@@ -87,13 +88,5 @@ public class CustomerServiceImpl implements CustomerService {
         return customerMapper.selectSelective(customer);
     }
 
-//    @Override
-//    public Customer login(String customerName, String customerPwd) {
-//        Customer customer=new Customer();
-//        customer.setCustomerName(customerName);
-//        customer.setCustomerPwd(customerPwd);
-//        //查询用户的信息
-//        List<Customer> listCustomer=customerMapper.selectSelective(customer);
-//        return null!=listCustomer && listCustomer.size()>0 ?listCustomer.get(0):null;
-//    }
+
 }

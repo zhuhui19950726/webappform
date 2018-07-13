@@ -5,13 +5,16 @@
     <id column="id" jdbcType="BIGINT" property="id" />
     <result column="username" jdbcType="VARCHAR" property="username" />
     <result column="userkey" jdbcType="VARCHAR" property="userkey" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="mod_time" property="modTime" jdbcType="TIMESTAMP" />
+    <result column="login_time" property="loginTime" jdbcType="TIMESTAMP" />
     <result column="cellphone" jdbcType="VARCHAR" property="cellphone" />
-    <result column="flag" jdbcType="CHAR" property="flag" />
+    <result column="del_flag" jdbcType="CHAR" property="delFlag" />
     <result column="photo_img" jdbcType="VARCHAR" property="photoImg" />
     <result column="identify" jdbcType="VARCHAR" property="identify" />
   </resultMap>
   <sql id="Base_Column_List">
-    id, username, userkey, cellphone, flag, photo_img,identify
+    id, username, userkey, create_time,mod_time,login_time,cellphone, del_flag, photo_img,identify
   </sql>
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
@@ -24,35 +27,23 @@
     select
     <include refid="Base_Column_List" />
     from manager
-    where username = #{username,jdbcType=VARCHAR} and flag='0'
-  </select>
-
-  <select id="selectManagerByNamePwd" parameterType="java.util.Map" resultMap="BaseResultMap">
-    select
-    id, username, cellphone, flag, photo_img
-    from manager
-    where username = #{username,jdbcType=VARCHAR} and flag='0'and userkey = #{userkey,jdbcType=VARCHAR};
+    where username = #{username,jdbcType=VARCHAR} and del_flag='0'
   </select>
 
   <select id="checkexistsByName" parameterType="java.lang.String" resultType="java.lang.Long">
     select
     count(1)
     from manager
-    where username = #{username,jdbcType=VARCHAR} AND flag='0';
+    where username = #{username,jdbcType=VARCHAR} AND del_flag='0';
   </select>
 
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from manager
-    where id = #{id,jdbcType=BIGINT}
-  </delete>
-  <insert id="insert" parameterType="com.form.user.bean.Manager">
-    insert into manager (id, username, userkey, 
-      cellphone, flag, photo_img
-      )
-    values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{userkey,jdbcType=VARCHAR}, 
-      #{cellphone,jdbcType=VARCHAR}, #{flag,jdbcType=CHAR}, #{photoImg,jdbcType=VARCHAR}
-      )
-  </insert>
+  <select id="selectManagerByNamePwd" parameterType="java.util.Map" resultMap="BaseResultMap" >
+		select
+        <include refid="Base_Column_List"/>
+		from manager
+		where username = #{username,jdbcType=VARCHAR} and del_flag='0' and userkey = #{userkey,jdbcType=VARCHAR}
+	</select>
+
   <insert id="insertSelective" parameterType="com.form.user.bean.Manager">
     insert into manager
     <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -65,11 +56,20 @@
       <if test="userkey != null">
         userkey,
       </if>
+      <if test="createTime == null">
+        create_time,
+      </if>
+      <if test="modTime != null">
+        mod_time,
+      </if>
+      <if test="loginTime != null">
+        login_time,
+      </if>
       <if test="cellphone != null">
         cellphone,
       </if>
-      <if test="flag != null">
-        flag,
+      <if test="del_flag != null">
+        delFlag,
       </if>
       <if test="photoImg != null">
         photo_img,
@@ -88,14 +88,24 @@
       <if test="cellphone != null">
         #{cellphone,jdbcType=VARCHAR},
       </if>
-      <if test="flag != null">
-        #{flag,jdbcType=CHAR},
+      <if test="createTime == null">
+        SYSDATE(),
+      </if>
+      <if test="modTime != null">
+        #{modTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="loginTime != null">
+        #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        #{delFlag,jdbcType=CHAR},
       </if>
       <if test="photoImg != null">
         #{photoImg,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
+
   <update id="updateByPrimaryKeySelective" parameterType="com.form.user.bean.Manager">
     update manager
     <set>
@@ -108,8 +118,15 @@
       <if test="cellphone != null">
         cellphone = #{cellphone,jdbcType=VARCHAR},
       </if>
-      <if test="flag != null">
-        flag = #{flag,jdbcType=CHAR},
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      mod_time = sysdate(),
+      <if test="loginTime != null">
+        login_time = #{loginTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="delFlag != null">
+        flag = #{delFlag,jdbcType=CHAR},
       </if>
       <if test="photoImg != null">
         photo_img = #{photoImg,jdbcType=VARCHAR},
@@ -117,13 +134,10 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
+
   <update id="updateByPrimaryKey" parameterType="com.form.user.bean.Manager">
-    update manager
-    set username = #{username,jdbcType=VARCHAR},
-      userkey = #{userkey,jdbcType=VARCHAR},
-      cellphone = #{cellphone,jdbcType=VARCHAR},
-      flag = #{flag,jdbcType=CHAR},
-      photo_img = #{photoImg,jdbcType=VARCHAR}
-    where id = #{id,jdbcType=BIGINT}
-  </update>
+		update manager
+		set login_time = sysdate()
+		where id = #{id,jdbcType=BIGINT}
+	</update>
 </mapper>

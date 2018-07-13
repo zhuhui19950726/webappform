@@ -16,8 +16,6 @@ public interface ManagerMapper {
 
     int updateByPrimaryKeySelective(Manager record);
 
-    int updateByPrimaryKey(Manager record);
-
     /**
      * 根据用户名验证用户是否存在
      *
@@ -46,4 +44,14 @@ public interface ManagerMapper {
      *         用户信息
      */
     Manager selectByName(String username);
+
+    /**
+     * 修改管理员信息
+     *
+     * @param record
+     *            <code>Manager</code>对象
+     *            {@link Manager}
+     * @return int 1表示成功 0表示失败
+     */
+    int updateByPrimaryKey(Manager record);
 }
