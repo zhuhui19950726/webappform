@@ -2,7 +2,7 @@ package com.form.user.bean;
 
 /**
  * 权限表
- * Created by Administrator on 2018/4/4.
+ * Created by zhuhui on 2018/4/4.
  */
 public class PrivInfo {
     //主键

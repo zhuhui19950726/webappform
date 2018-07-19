@@ -6,7 +6,9 @@ import com.form.user.dao.CustomerMapper;
 import com.form.user.dao.ManagerMapper;
 import com.form.user.service.CustomerService;
 import org.apache.commons.lang.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -52,9 +54,9 @@ public class CustomerServiceImpl implements CustomerService {
     public int loginManager(HttpServletRequest request, String username, String userkey) {
         //查询下用户名是否存在
         Long existsFlag =managerMapper.checkexistsByName(username);
-        Map<String, Object> paramMap = null;
+        Map<String, Object> paramMap;
         if(!"0".equals(existsFlag.toString())){
-            paramMap = new HashMap<String, Object>();
+            paramMap = new HashMap<>();
             paramMap.put(USERNAME, username);
             paramMap.put(PASSWORD, userkey);
             manager = managerMapper.selectManagerByNamePwd(paramMap);

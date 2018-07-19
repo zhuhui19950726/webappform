@@ -1,16 +1,10 @@
-/*
- * Copyright 2013 NINGPAI, Inc.All rights reserved.
- * NINGPAI PROPRIETARY / CONFIDENTIAL.USE is subject to licence terms.
- */
+
 package com.form.user.util;
 
 import org.apache.log4j.Logger;
 
 /**
  * 日志封装
- * 
- * @author NINGPAI-LIH
- * @since 2015年2月26日14:38:55
  */
 public class MyLogger {
 

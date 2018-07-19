@@ -2,9 +2,10 @@ package com.form.user.dao;
 
 import com.form.user.bean.Customer;
 import com.form.user.bean.Manager;
+import org.springframework.stereotype.Repository;
 
 import java.util.Map;
-
+@Repository
 public interface ManagerMapper {
     int deleteByPrimaryKey(Long id);
 

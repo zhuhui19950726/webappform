@@ -35,4 +35,9 @@
     from iden_priv_ref
     where  iden_name= #{idenName,jdbcType=VARCHAR}
   </select>
+  <!--根据身份将权限的id清空-->
+  <delete id="delByIden" parameterType="java.lang.String">
+    delete from iden_priv_ref
+    where  iden_name= #{idenName,jdbcType=VARCHAR}
+  </delete>
 </mapper>

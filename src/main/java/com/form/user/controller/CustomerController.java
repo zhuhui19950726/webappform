@@ -7,13 +7,15 @@ import com.form.user.bean.PrivInfo;
 import com.form.user.service.CustomerService;
 import com.form.user.service.ManagerService;
 import com.form.user.service.privService;
-import com.form.user.util.MyLogger;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
@@ -24,15 +26,16 @@ import java.util.List;
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
+    //日志文件使用slf4j比较好(al)
+    private  static  final Logger LOGGER= LoggerFactory.getLogger(CustomerController.class);
 
-    private static final MyLogger LOGGER = new MyLogger(CustomerController.class);
     private Manager manager;
     private static final String USERNAME = "username";
-    @Resource
+    @Autowired
     private CustomerService customerService;
-    @Resource
+    @Autowired
     private ManagerService managerService;
-    @Resource
+    @Autowired
     private privService privService;
 
     /**

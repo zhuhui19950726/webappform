@@ -110,38 +110,38 @@
 
             <ul class="nav nav-list">
 
-                <%--<c:forEach items="${pList }" var="item">--%>
+                <c:forEach items="${pList }" var="item">
 
-                    <%--<li class="menu_left"><a href="${item.privUrl }" target="right"> <i--%>
-                            <%--class="${item.privIcon }"></i> <span class="menu-text">--%>
-                            <%--${item.privName } </span> </a>--%>
-                    <%--</li>--%>
+                    <li class="menu_left"><a href="${item.privUrl }" target="right"> <i
+                            class="${item.privIcon }"></i> <span class="menu-text">
+                            ${item.privName } </span> </a>
+                    </li>
 
-                <%--</c:forEach>--%>
+                </c:forEach>
 
 
 
-                <li class="active"><a href="user/toUsers.do" target="right">
-                        <i class="icon-dashboard"></i> <span class="menu-text">
-                            用户管理 </span> </a></li>
+                <%--<li class="active"><a href="user/toUsers.do" target="right">--%>
+                        <%--<i class="icon-dashboard"></i> <span class="menu-text">--%>
+                            <%--用户管理 </span> </a></li>--%>
 
-                <li><a href="view/priv/priv.jsp" target="right"> <i
-                        class="icon-text-width"></i> <span class="menu-text"> 权限管理
-                    </span> </a></li>
+                <%--<li><a href="view/priv/priv.jsp" target="right"> <i--%>
+                        <%--class="icon-text-width"></i> <span class="menu-text"> 权限管理--%>
+                    <%--</span> </a></li>--%>
 
-                <li><a href="item/toItems.do" target="right"> <i
-                        class="icon-desktop"></i> <span class="menu-text"> 商品管理 </span> </a>
-                </li>
+                <%--<li><a href="item/toItems.do" target="right"> <i--%>
+                        <%--class="icon-desktop"></i> <span class="menu-text"> 商品管理 </span> </a>--%>
+                <%--</li>--%>
 
-                <li><a href="item/toItemlist.do" target="right"> <i
-                        class="icon-picture"></i> <span class="menu-text"> 商品一览 </span> </a>
-                </li>
+                <%--<li><a href="item/toItemlist.do" target="right"> <i--%>
+                        <%--class="icon-picture"></i> <span class="menu-text"> 商品一览 </span> </a>--%>
+                <%--</li>--%>
 
-                <li><a href="typography.html"> <i class="icon-list"></i> <span
-                        class="menu-text"> 密码修改 </span> </a></li>
+                <%--<li><a href="typography.html"> <i class="icon-list"></i> <span--%>
+                        <%--class="menu-text"> 密码修改 </span> </a></li>--%>
 
-                <li><a href="typography.html"> <i class="icon-edit"></i> <span
-                        class="menu-text"> 充值中心 </span> </a></li>
+                <%--<li><a href="typography.html"> <i class="icon-edit"></i> <span--%>
+                        <%--class="menu-text"> 充值中心 </span> </a></li>--%>
 
             </ul>
             <!-- /.nav-list -->

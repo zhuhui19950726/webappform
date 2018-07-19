@@ -39,6 +39,16 @@
     <url-pattern>/</url-pattern>
   </servlet-mapping>
 
+  <error-page>
+    <error-code>404</error-code>
+    <location>/views/errortip.jsp</location>
+  </error-page>
+
+  <error-page>
+    <error-code>500</error-code>
+    <location>/views/errortip.jsp</location>
+  </error-page>
+
   <welcome-file-list>
     <welcome-file>boss/login.jsp</welcome-file>
   </welcome-file-list>

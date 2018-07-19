@@ -1,6 +1,7 @@
 package com.form.user.dao;
 
 import com.form.user.bean.Customer;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.Map;

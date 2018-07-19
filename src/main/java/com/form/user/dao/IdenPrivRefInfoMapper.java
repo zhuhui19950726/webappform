@@ -11,4 +11,6 @@ public interface IdenPrivRefInfoMapper {
     int insertSelective(IdenPrivRefInfo record);
 
     List<IdenPrivRefInfo> selectByIden(String identify);
+
+    void delByIden(String idenName);
 }

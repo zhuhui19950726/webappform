@@ -85,9 +85,9 @@
 
     <!-- 数据库连接池 -->
     <dependency>
-      <groupId>com.mchange</groupId>
-      <artifactId>c3p0</artifactId>
-      <version>0.9.5.2</version>
+      <groupId>com</groupId>
+      <artifactId>druid</artifactId>
+      <version>1.0.9</version>
     </dependency>
 
     <!-- MyBatis -->

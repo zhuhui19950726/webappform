@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//ibatis.apache.org//DTD Config 3.0//EN" "http://ibatis.apache.org/dtd/ibatis-3-config.dtd">
+<configuration>
+    <typeAliases>
+        <!--管理员模块-->
+        <typeAlias type="com.form.user.bean.Manager" alias="Manager"/>
+        <!--权限模块-->
+        <typeAlias type="com.form.user.bean.PrivInfo" alias="PrivInfo"/>
+        <typeAlias type="com.form.user.bean.IdenPrivRefInfo" alias="IdenPrivRefInfo"/>
+        <!--用户模块-->
+        <typeAlias type="com.form.user.bean.Customer" alias="Customer"/>
+    </typeAliases>
+    <mappers>
+        <mapper resource="com/form/web/mybatis/mapper/ManagerMapper.xml"/>
+        <mapper resource="com/form/web/mybatis/mapper/PrivInfoMapper.xml"/>
+        <mapper resource="com/form/web/mybatis/mapper/IdenPrivRefInfoMapper.xml"/>
+        <mapper resource="com/form/web/mybatis/mapper/CustomerMapper.xml"/>
+    </mappers>
+</configuration>
